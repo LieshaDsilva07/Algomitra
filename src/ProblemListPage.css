@@ -1,0 +1,303 @@
+/* --- General Layout & Background --- */
+body {
+  background-color: #f0f2f5;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.list-page-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Header & Controls Card --- */
+.list-page-controls-wrapper {
+  background: linear-gradient(180deg, #ffffff, #f9faff);
+  padding: 25px 30px 20px 30px;
+  border-radius: 16px;
+  margin-bottom: 30px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 2;
+}
+
+.list-page-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.list-page-header h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #222;
+  margin: 0 0 8px 0;
+}
+
+.header-rocket-emoji {
+  display: inline-block;
+  margin-left: 8px;
+  animation: rocket-float 3s ease-in-out infinite;
+}
+
+.list-page-header p {
+  font-size: 1rem;
+  color: #6c757d;
+  margin: 0;
+}
+
+/* --- Rocket animation --- */
+@keyframes rocket-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* --- Filter Controls (Search + Difficulty) --- */
+.filter-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+/* Search Input */
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px 14px;
+  flex-grow: 1;
+  min-width: 280px;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.search-input-wrapper:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transform: translateY(-1px);
+}
+
+.search-icon {
+  color: #6c757d;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 1rem;
+  width: 100%;
+  color: #222;
+}
+
+.search-input::placeholder {
+  color: #aaa;
+}
+
+/* Difficulty Dropdown (react-select) */
+.filter-react-select-container {
+  min-width: 180px;
+  font-size: 0.9rem;
+  z-index: 10;
+}
+
+.filter-react-select__control {
+  border-radius: 12px !important;
+  border: 1px solid #e0e0e0 !important;
+  background-color: #fff !important;
+  min-height: 42px !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05) !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease;
+}
+
+.filter-react-select__control--is-focused {
+  border-color: #80bdff !important;
+  box-shadow: 0 0 0 0.25rem rgba(0,123,255,0.2) !important;
+}
+
+.filter-react-select__menu {
+  border-radius: 12px !important;
+  margin-top: 4px !important;
+  z-index: 11 !important;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* --- Company Filter Tags --- */
+.company-tags-container {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #e9ecef;
+}
+
+.tags-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 10px;
+}
+
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.company-tag {
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  background: #f9fafb;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+}
+
+.company-tag:hover {
+  background: #f1f5ff;
+  border-color: #a0c4ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+}
+
+.company-tag.active {
+  background: linear-gradient(135deg, #007bff, #0056d2);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,123,255,0.4);
+}
+
+/* --- Problem List Card --- */
+.problem-list-card {
+  background: linear-gradient(180deg, #ffffff, #f9faff);
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.list-header {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1.5fr;
+  padding: 14px 24px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #495057;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.problem-item {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1.5fr;
+  padding: 18px 24px;
+  border-bottom: 1px solid #eee;
+  color: #333;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  background: #fff;
+}
+
+.problem-item:last-child {
+  border-bottom: none;
+}
+
+.problem-item:hover {
+  background: #f9fbff;
+  transform: scale(1.01);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  border-radius: 12px;
+}
+
+.problem-item .col-title span {
+  font-weight: 600;
+  color: #0056b3;
+}
+
+.problem-item:hover .col-title span {
+  text-decoration: underline;
+}
+
+/* Difficulty Pills */
+.difficulty-pill {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.pill-easy {
+  background: rgba(40, 167, 69, 0.15);
+  color: #157347;
+}
+
+.pill-medium {
+  background: rgba(255, 193, 7, 0.15);
+  color: #996600;
+}
+
+.pill-hard {
+  background: rgba(220, 53, 69, 0.15);
+  color: #a71d2a;
+}
+
+/* No Results */
+.no-results-message {
+  padding: 40px 20px;
+  text-align: center;
+  color: #6c757d;
+  font-size: 1rem;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .list-page-container {
+    margin: 20px auto;
+    padding: 0 10px;
+  }
+  .list-page-controls-wrapper {
+    padding: 18px;
+    margin-bottom: 20px;
+  }
+  .filter-controls {
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 0;
+  }
+  .select-filters {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .filter-react-select-container {
+    width: 100%;
+  }
+  .list-header {
+    display: none;
+  }
+  .problem-item {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 15px;
+    text-align: left;
+  }
+  .col-difficulty, .col-company {
+    text-align: left;
+    padding-left: 0;
+  }
+}

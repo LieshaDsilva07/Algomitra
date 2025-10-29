@@ -1,0 +1,1 @@
+export const CONSTRAINTS_TIP = "Don't forget the edge cases. Your interviewer won't. 😉";

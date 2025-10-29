@@ -1,0 +1,440 @@
+/* --- Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* --- Global Styles & Reset --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f0f2f5; 
+  color: #1a202c;
+  line-height: 1.6;
+}
+
+code {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  font-size: 0.9em;
+  background-color: #edf2f7;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+
+/* --- Problem List Page (Homepage) --- */
+.list-page-container {
+  max-width: 900px; /* NEW: Slightly narrower for focus */
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+/* NEW: Wrapper for header and controls to give a card-like feel */
+.list-page-controls-wrapper {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  padding: 2.5rem; /* More internal padding */
+  margin-bottom: 2rem; /* Space below this section */
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+
+  /* NEW: Subtle gradient background */
+  background-image: radial-gradient(circle at 10% 20%, rgba(240, 245, 255, 0.5) 0%, rgba(255,255,255,0) 50%);
+}
+
+.list-page-header {
+  text-align: center;
+  margin-bottom: 2rem; /* Reduced margin */
+}
+
+.list-page-header h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 3rem; /* Slightly smaller for better balance */
+  font-weight: 700;
+  color: #1a202c; /* Darker text */
+  margin-bottom: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.header-rocket-emoji {
+  display: inline-block;
+  font-size: 2.5rem; /* Adjusted size */
+  transform-origin: bottom center;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); } /* Adjusted float height */
+  100% { transform: translateY(0px); }
+}
+
+.list-page-header p {
+  font-size: 1rem; /* Slightly smaller */
+  color: #6b7280;
+}
+
+.problem-list-card {
+  background-color: #ffffff; /* Solid white for list */
+  border-radius: 16px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  border: 1px solid #e2e8f0; /* Subtle border */
+}
+
+.list-header, .problem-item {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  gap: 1rem;
+}
+
+.list-header {
+  background-color: #f7fafc; /* Lighter header background */
+  color: #6b7280;
+  font-size: 0.8rem; /* Slightly larger */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #e2e8f0; /* Consistent border */
+}
+
+.problem-item {
+  text-decoration: none;
+  color: #2d3748; /* Darker link color */
+  border-bottom: 1px solid #edf2f7; /* Lighter item separator */
+  transition: all 0.2s ease-in-out;
+}
+
+.problem-item:hover {
+  background-color: #f0f4ff; /* NEW: Subtle hover background */
+  transform: translateX(4px);
+  border-left: 4px solid #4f46e5;
+}
+
+.problem-item:last-child {
+  border-bottom: none;
+}
+
+.problem-item .col-title { font-weight: 500; }
+.problem-item .col-company { font-size: 0.9rem; color: #4a5568; } /* Darker company text */
+
+.difficulty-pill {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem; /* Slightly smaller pill font */
+  font-weight: 600;
+  text-align: center;
+}
+.pill-easy { background-color: #d1fae5; color: #065f46; }
+.pill-medium { background-color: #ffedd5; color: #9a3412; }
+.pill-hard { background-color: #fee2e2; color: #991b1b; }
+
+
+/* --- Main Layout for Individual Problem Page --- */
+.page-container {
+  display: flex;
+  gap: 1.5rem;
+  padding: 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+  height: 100vh;
+}
+
+.left-panel, .right-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+}
+body:has(.page-container) {
+    overflow: hidden;
+}
+
+/* --- Generic Card Style for Problem Page --- */
+.card {
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(226, 232, 240, 0.5);
+  border-radius: 12px;
+  padding: 1.75rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- All other styles for the problem page components --- */
+.problem-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+.difficulty-subtitle { color: #718096; margin-top: 0.25rem; }
+.difficulty-badge { padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; }
+.badge-easy { background-color: #c6f6d5; color: #2f855a; }
+.badge-medium { background-color: #feebc8; color: #9c4221; }
+.badge-hard { background-color: #fed7d7; color: #c53030; }
+.left-panel h3 { font-size: 1.25rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; }
+.description { line-height: 1.6; }
+.example-card { background-color: #f7fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem; line-height: 1.7; }
+.example-card p { margin-bottom: 0.5rem; }
+.constraints-box { background-color: #fffbeb; border: 1px solid #fbd38d; color: #b45309; padding: 1rem; border-radius: 6px; margin-bottom: 1rem; }
+.left-panel ul { list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+.left-panel li { background-color: #f7fafc; border: 1px solid #e2e8f0; color: #4a5568; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; }
+.back-link-container { margin-top: 2rem; border-top: 1px solid #e2e8f0; padding-top: 1rem; }
+.back-link-container a { color: #4299e1; text-decoration: none; }
+.panel-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; margin-bottom: 1rem; border-bottom: 1px solid #e2e8f0; }
+.editor-controls { display: flex; gap: 0.5rem; }
+.btn, .language-select { font-family: 'Inter', sans-serif; font-size: 0.875rem; padding: 0.5rem 1rem; border: 1px solid #cbd5e0; border-radius: 6px; background-color: #fff; cursor: pointer; transition: all 0.2s; }
+.btn:hover, .language-select:hover { background-color: #f7fafc; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); transform: translateY(-2px); }
+.btn-submit { background: linear-gradient(45deg, #4f46e5, #6366f1); color: white; border: none; }
+.btn-submit:hover { background: linear-gradient(45deg, #4338ca, #4f46e5); box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3); transform: translateY(-2px); }
+.code-area { border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; }
+.tabs-container { display: flex; gap: 1.5rem; border-bottom: 1px solid #e2e8f0; }
+.main-tab { display: flex; align-items: center; gap: 0.4rem; border: none; background: none; padding-bottom: 0.75rem; cursor: pointer; font-size: 0.95rem; color: #718096; border-bottom: 2px solid transparent; transform: translateY(1px); }
+.main-tab.active { color: #2d3748; border-bottom-color: #4f46e5; }
+.tab-content { padding-top: 1.5rem; }
+.case-selectors { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
+.case-btn { border: none; background-color: #edf2f7; padding: 0.3rem 0.85rem; border-radius: 999px; font-size: 0.85rem; font-weight: 500; color: #4a5568; cursor: pointer; transition: background-color 0.2s; }
+.case-btn:hover { background-color: #e2e8f0; }
+.case-btn.active { background-color: #e2e8f0; color: #1a202c; }
+.case-input-label { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.25rem; }
+.case-input-value { background-color: #f7fafc; border: 1px solid #e2e8f0; padding: 0.75rem; border-radius: 6px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; margin-bottom: 1rem; color: #2d3748; }
+.output-panel h4 { margin-bottom: 0.75rem; font-weight: 700; }
+.result-correct, .result-incorrect, .result-error, .no-result { padding: 1rem; border-radius: 6px; font-size: 0.9rem; line-height: 1.5; }
+.no-result { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem 1rem; color: #718096; min-height: 160px; }
+.no-result-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+.no-result h4 { color: #2d3748; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.pro-tip { margin-top: 1.5rem; font-size: 0.85rem; color: #4a5568; }
+.pro-tip strong { color: #38a169; }
+.result-correct { background-color: #f0fff4; border: 1px solid #9ae6b4; color: #2f855a; }
+.result-incorrect { background-color: #fff5f5; border: 1px solid #feb2b2; color: #c53030; }
+.result-error { background-color: #fffbeb; border: 1px solid #fbd38d; color: #b45309; }
+.not-found-container { text-align: center; padding-top: 5rem; }
+.not-found-container a { color: #4299e1; }
+
+
+/* --- NEW AND MODIFIED STYLES --- */
+
+/* Wrappers for panel content to fix scrolling */
+.editor-panel-container,
+.problem-description-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Overall Verdict Banner (e.g., "All tests passed!") */
+.final-verdict {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  animation: fadeInScale 0.4s ease-out;
+}
+
+.final-verdict-accepted {
+  color: #2f855a;
+  background-color: #f0fff4;
+}
+
+.final-verdict-rejected {
+  color: #c53030;
+  background-color: #fff5f5;
+}
+
+/* Result Case Tabs (e.g., [✅ Case 1]) */
+.result-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 1.5rem;
+}
+
+.result-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: 1px solid #cbd5e0;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.result-tab:hover {
+  border-color: #a0aec0;
+  background-color: #f7fafc;
+}
+
+.result-tab .icon {
+  font-size: 12px;
+}
+
+.result-tab.active {
+  color: white;
+  font-weight: 600;
+}
+
+.result-tab.accepted.active {
+  background-color: #38a169;
+  border-color: #38a169;
+}
+
+.result-tab.rejected.active {
+  background-color: #e53e3e;
+  border-color: #e53e3e;
+}
+
+/* Improved Grid Layout for Input/Output Details */
+.result-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.detail-section label {
+  font-weight: 600;
+  color: #2d3748;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.detail-section pre {
+  background-color: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  font-size: 14px;
+  margin: 0;
+  min-height: 60px;
+}
+
+/* Utility classes for output text color */
+.text-green { color: #2f855a; }
+.text-red { color: #c53030; }
+
+
+/* Animated Loading Spinner */
+.spinner {
+  border: 4px solid #e2e8f0;
+  border-top: 4px solid #4f46e5;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* --- NEW STYLES for Filter/Search Controls --- */
+
+.filter-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0; /* No internal padding here, moved to wrapper */
+  margin-top: 1.5rem; /* NEW: Space between header and filters */
+
+  /* Removed direct background/shadow/border as it's now handled by .list-page-controls-wrapper */
+  /* These will now be styled as part of the wrapper card */
+}
+
+.search-input {
+  flex-grow: 1;
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: #fcfcfd; /* Slightly off-white for input */
+}
+
+.search-input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+.select-filters {
+  display: flex;
+  gap: 1rem;
+}
+
+.filter-select {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background-color: #fcfcfd; /* Consistent with search input */
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.filter-select:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+.no-results-message {
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: #6b7280;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .filter-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .select-filters {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .search-input, .filter-select {
+    width: 100%;
+  }
+  .list-page-controls-wrapper {
+    padding: 1.5rem;
+  }
+  .list-page-header h1 {
+    font-size: 2.5rem;
+  }
+  .header-rocket-emoji {
+    font-size: 2rem;
+  }
+}
