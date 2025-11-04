@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'; 
+import React, { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Select from 'react-select'; 
 import { problems } from '../data/problems';
@@ -15,6 +15,14 @@ function ProblemListPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDifficultyOption, setSelectedDifficultyOption] = useState(difficultyOptions[0]);
   const [selectedCompanyTag, setSelectedCompanyTag] = useState('All');
+
+  // ✅ Track solved problems from localStorage
+  const [solvedProblems, setSolvedProblems] = useState([]);
+
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem('solvedProblems')) || [];
+    setSolvedProblems(saved);
+  }, []);
 
   const companyList = useMemo(() => {
     const companies = new Set(problems.map(p => p.company.trim()));
@@ -43,7 +51,6 @@ function ProblemListPage() {
 
         <div className="filter-controls">
           <div className="search-input-wrapper">
-            {/* ✅ Fixed: Added proper search icon */}
             <svg
               className="search-icon"
               xmlns="http://www.w3.org/2000/svg"
@@ -108,22 +115,28 @@ function ProblemListPage() {
 
         <div className="list-body">
           {filteredProblems.length > 0 ? (
-            filteredProblems.map((problem, index) => (
-              <Link
-                to={`/problems/${problem.id}`}
-                key={problem.id}
-                className="problem-item"
-                style={{ animationDelay: `${index * 0.03}s` }}
-              >
-                <div className="col-title"><span>{problem.title}</span></div>
-                <div className="col-difficulty">
-                  <span className={`difficulty-pill pill-${problem.difficulty.toLowerCase()}`}>
-                    {problem.difficulty}
-                  </span>
-                </div>
-                <div className="col-company"><span>{problem.company}</span></div>
-              </Link>
-            ))
+            filteredProblems.map((problem, index) => {
+              const isSolved = solvedProblems.includes(problem.title);
+              return (
+                <Link
+                  to={`/problems/${problem.id}`}
+                  key={problem.id}
+                  className={`problem-item ${isSolved ? 'solved-problem' : ''}`}
+                  style={{ animationDelay: `${index * 0.03}s` }}
+                >
+                  <div className="col-title">
+                    <span>{problem.title}</span>
+                    {isSolved && <span className="solved-badge">✅ Solved</span>}
+                  </div>
+                  <div className="col-difficulty">
+                    <span className={`difficulty-pill pill-${problem.difficulty.toLowerCase()}`}>
+                      {problem.difficulty}
+                    </span>
+                  </div>
+                  <div className="col-company"><span>{problem.company}</span></div>
+                </Link>
+              );
+            })
           ) : (
             <div className="no-results-message">
               <p>🤔 No problems match your criteria. Try adjusting the filters!</p>

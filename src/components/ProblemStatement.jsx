@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import { CONSTRAINTS_TIP } from '../data/constants'; // This was unused in the provided code
 
 function ProblemStatement({ problem }) {
   const difficultyClasses = {

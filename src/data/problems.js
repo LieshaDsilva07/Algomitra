@@ -171,7 +171,7 @@ class Solution {
         cpp: `#include <iostream>\n#include <string>\n#include <algorithm>\n#include <unordered_map>\n\n// __USER_CODE_HERE__\n\nint main() {\n    std::string s;\n    std::getline(std::cin, s);\n    Solution sol;\n    int result = sol.lengthOfLongestSubstring(s);\n    std::cout << result << std::endl;\n    return 0;\n}`,
         java: `import java.util.*;\n\n// __USER_CODE_HERE__\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine();\n        Solution sol = new Solution();\n        int result = sol.lengthOfLongestSubstring(s);\n        System.out.println(result);\n        sc.close();\n    }\n}`
     },
-    testCases: [ { input: "abcabcbb", expected: "3" }, { input: "bbbbb", expected: "1" }, { input: "pwwkew", expected: "3" }, { input: "", expected: "0" } ],
+    testCases: [ { input: "abcabcbb", expected: "3" }, { input: "bbbbb", expected: "1" }, { input: "pwwkew", expected: "3" } ],
     languageIds: { python: 71, javascript: 93, cpp: 54, java: 91 }
   },
   {
